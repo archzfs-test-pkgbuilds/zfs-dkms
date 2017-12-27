@@ -14,7 +14,7 @@ makedepends=("git")
 arch=("x86_64")
 url="http://zfsonlinux.org/"
 source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-0.7.5/zfs-0.7.5.tar.gz")
-sha256sums=("SKIP")
+sha256sums=("1b826407418423379ff898c0e6ee0ada59c70754e6085a7663028330d0d8a44a")
 license=("CDDL")
 depends=("spl-dkms" "zfs-utils-common=0.7.5")
 provides=("zfs")
