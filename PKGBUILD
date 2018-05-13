@@ -10,7 +10,7 @@ pkgdesc="Kernel modules for the Zettabyte File System."
 
 pkgver=0.7.9
 pkgrel=1
-makedepends=("git")
+makedepends=()
 arch=("x86_64")
 url="http://zfsonlinux.org/"
 source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-0.7.9/zfs-0.7.9.tar.gz")
