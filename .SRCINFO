@@ -8,6 +8,7 @@ pkgbase = zfs-dkms
 	license = CDDL
 	depends = spl-dkms
 	depends = zfs-utils-common=0.7.9
+	depends = lsb-release
 	provides = zfs
 	conflicts = zfs-dkms-git
 	conflicts = zfs-archiso-linux
