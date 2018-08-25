@@ -13,7 +13,7 @@ pkgrel=3
 makedepends=()
 arch=("x86_64")
 url="http://zfsonlinux.org/"
-source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-0.7.9/zfs-0.7.9.tar.gz" 
+source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/zfs-${pkgver}.tar.gz" 
         "upstream-ac09630-Fix-zpl_mount-deadlock.patch"
         "upstream-9f64c1e-Linux-4.18-compat-inode-timespec_timespec64.patch"
         "upstream-9161ace-Linux-compat-4.18-check_disk_size_change.patch")
@@ -22,26 +22,26 @@ sha256sums=("f50ca2441c6abde4fe6b9f54d5583a45813031d6bb72b0011b00fc2683cd9f7a"
             "03ed45af40850c3a51a6fd14f36c1adc06501c688a67afb13db4fded6ec9db1d"
             "afbde4a2507dff989404665dbbdfe18eecf5aba716a6513902affa0e4cb033fe")
 license=("CDDL")
-depends=('spl-dkms' "zfs-utils-common=0.7.9" "lsb-release" "dkms")
+depends=('spl-dkms' "zfs-utils-common=${pkgver}" "lsb-release" "dkms")
 provides=("zfs")
 groups=("archzfs-dkms")
 conflicts=('zfs-dkms-git' 'zfs-archiso-linux' 'zfs-archiso-linux-git' 'zfs-linux-hardened' 'zfs-linux-hardened-git' 'zfs-linux-lts' 'zfs-linux-lts-git' 'zfs-linux' 'zfs-linux-git' 'zfs-linux-vfio' 'zfs-linux-vfio-git' 'zfs-linux-zen' 'zfs-linux-zen-git'  'zfs-archiso-linux-headers' 'zfs-archiso-linux-git-headers' 'zfs-linux-hardened-headers' 'zfs-linux-hardened-git-headers' 'zfs-linux-lts-headers' 'zfs-linux-lts-git-headers' 'zfs-linux-headers' 'zfs-linux-git-headers' 'zfs-linux-vfio-headers' 'zfs-linux-vfio-git-headers' 'zfs-linux-zen-headers' 'zfs-linux-zen-git-headers' )
 prepare() {
-    cd "${srcdir}/zfs-0.7.9"
+    cd "${srcdir}/zfs-${pkgver}"
     patch -Np1 -i ${srcdir}/upstream-ac09630-Fix-zpl_mount-deadlock.patch
     patch -Np1 -i ${srcdir}/upstream-9f64c1e-Linux-4.18-compat-inode-timespec_timespec64.patch
     patch -Np1 -i ${srcdir}/upstream-9161ace-Linux-compat-4.18-check_disk_size_change.patch
 }
 
 build() {
-    cd "${srcdir}/zfs-0.7.9"
+    cd "${srcdir}/zfs-${pkgver}"
     ./autogen.sh
 }
 
 package() {
     dkmsdir="${pkgdir}/usr/src/zfs-0.7.9"
     install -d "${dkmsdir}"
-    cp -a ${srcdir}/zfs-0.7.9/. ${dkmsdir}
+    cp -a ${srcdir}/zfs-${pkgver}/. ${dkmsdir}
     cd "${dkmsdir}"
     find . -name ".git*" -print0 | xargs -0 rm -fr --
     scripts/dkms.mkconf -v 0.7.9 -f dkms.conf -n zfs
