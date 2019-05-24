@@ -20,6 +20,7 @@ depends=("zfs-utils=${pkgver}" "lsb-release" "python" "dkms")
 provides=("zfs" "zfs-headers" "spl" "spl-headers")
 groups=("archzfs-dkms")
 conflicts=("zfs" "zfs-headers" "spl" "spl-headers")
+replaces=("spl-dkms")
 
 build() {
     cd "${srcdir}/zfs-${pkgver}"
